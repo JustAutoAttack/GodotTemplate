@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://vv4fvph82vgd"]
+
+[ext_resource type="Script" uid="uid://yg8jt4cp7cis" path="res://core/scenes/main/main.gd" id="1_xgd4v"]
+[ext_resource type="Script" uid="uid://beoc7n1xmnmh" path="res://core/scenes/main/audio_controller.gd" id="2_5ufum"]
+[ext_resource type="Script" uid="uid://dr7ak7drkwen6" path="res://core/scenes/main/controllers/ui_controller.gd" id="2_c33be"]
+[ext_resource type="Script" uid="uid://cvd8fm67mnu" path="res://core/scenes/main/scene_controller.gd" id="2_ow0gy"]
+
+[node name="Main" type="Node" unique_id=279929253]
+script = ExtResource("1_xgd4v")
+
+[node name="StateMachine" type="Node" parent="." unique_id=186876491]
+
+[node name="SceneController" type="Node" parent="." unique_id=1050200627]
+script = ExtResource("2_ow0gy")
+
+[node name="AudioController" type="Node" parent="." unique_id=1507208328]
+script = ExtResource("2_5ufum")
+
+[node name="UIController" type="Node" parent="." unique_id=1236634010]
+script = ExtResource("2_c33be")

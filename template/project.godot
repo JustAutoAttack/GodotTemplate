@@ -14,10 +14,30 @@ config/name="Template"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Session="*uid://bvxwix5ntrvd2"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://_dev/": "gray",
+"res://addons/": "gray",
+"res://assets/": "orange",
+"res://common/": "green",
+"res://core/": "red",
+"res://features/": "purple",
+"res://ui/": "pink"
+}
 
 [physics]
 

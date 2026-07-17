@@ -1,0 +1,3 @@
+res://core/scenes/main/main.tscn
+res://core/systems/event/services/command_bus.gd
+res://core/systems/event/services/event_subscriber.gd
