@@ -6,4 +6,6 @@ extends Node
 # ===
 
 func _ready() -> void:
-	pass
+	EventSystem.broadcast(
+		Notifications.MainLoaded.new()
+	)

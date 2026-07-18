@@ -11,12 +11,15 @@ config_version=5
 [application]
 
 config/name="Template"
+run/main_scene="uid://0miuwkpaeqv7"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-Session="*uid://bvxwix5ntrvd2"
+LogSystem="*uid://b5i86g2xyg3w0"
+EventSystem="*uid://dy5t6ustvd7do"
+ContextSystem="*uid://cwp05mb5x1ot8"
 
 [display]
 

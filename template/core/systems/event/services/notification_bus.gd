@@ -7,11 +7,11 @@ extends EventBus
 # ===
 
 func _emit_policy(event: Event) -> void:
-	var type = event.get_script()
+	var type: Script = event.get_script() as Script
 	if _subscribers.has(type):
-		var current_subscribers = _subscribers[type].duplicate()
-		for callback in current_subscribers:
+		var subs: Array[Callable] = _subscribers[type] as Array[Callable]
+		for callback: Callable in subs.duplicate():
 			if callback.is_valid():
 				callback.call(event)
 			else:
-				_subscribers[type].erase(callback)
+				subs.erase(callback)

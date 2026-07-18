@@ -1,3 +1,11 @@
-res://core/scenes/main/main.tscn
-res://core/systems/event/services/command_bus.gd
-res://core/systems/event/services/event_subscriber.gd
+res://common/constants.gd
+res://common/enums.gd
+res://core/scenes/world/world.tscn
+res://core/scenes/world/world.gd
+res://ui/huds/hud.gd
+res://core/scenes/game/states/world.gd
+res://ui/huds/hud.tscn
+res://core/systems/event/definitions/notifications.gd
+res://ui/menus/settings/settings_menu.tscn
+res://ui/menus/main/main_menu.tscn
+res://core/scenes/main/controllers/audio.gd

@@ -26,5 +26,5 @@ func _get_assert_message(
 ) -> String: 
 	return "{0} state must be owned by {1}.".format([state_name, owner_name])
 
-func _subscribe() -> void: pass
-func _unsubscribe() -> void: pass
+func _subscribe_events() -> void: pass
+func _unsubscribe_events() -> void: pass

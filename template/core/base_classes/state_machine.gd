@@ -17,9 +17,9 @@ func _ready() -> void:
 		if child is State:
 			child.finished.connect(_transition_to_next_state)
 		else:
-			push_warning(
-				"Child is not State: {0}"
-				.format([child.name])
+			LogSystem.log_message(
+				"Child is not State: {0}".format([child.name]),
+				LogEnums.LogLevel.WARN
 			)
 	
 	await owner.ready
@@ -47,9 +47,9 @@ func get_initial_state() -> State:
 		if child is State: 
 			return child
 		else:
-			push_warning(
-				"Child is not State: {0}"
-				.format([child.name])
+			LogSystem.log_message(
+				"Child is not State: {0}".format([child.name]),
+				LogEnums.LogLevel.WARN
 			)
 	
 	return null
@@ -72,9 +72,9 @@ func _transition_to_next_state(
 	data: Object = null
 ) -> void:
 	if not has_node(target_state_path):
-		printerr(
-			"Cannot find state: {0}"
-			.format([target_state_path])
+		LogSystem.log_message(
+			"Cannot find state: {0}".format([target_state_path]),
+			LogEnums.LogLevel.WARN
 		)
 		return
 	
