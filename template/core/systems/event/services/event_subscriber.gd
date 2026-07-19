@@ -12,25 +12,21 @@ static var _active_subscriptions: Array[EventSubscription] = []
 ## - [param type]: Event class type.
 ## [br][br]
 ## - [param callback]: Callback function to execute.
-## [br][br]
-## - [param owner]: Object responsible for this subscription.
 static func subscribe(
 	event_bus: EventBus, 
 	type: GDScript, 
-	callback: Callable,
-	owner: Object
+	callback: Callable
 ) -> void:
+	var owner: Object = callback.get_object()
+	
 	if not is_instance_valid(owner):
 		LogSystem.log_message(
-			"Cannot subscribe an invalid owner.",
+			"Callback is not bound to an object instance.",
 			LogEnums.LogLevel.ERROR
 		)
 		return
 	
-	event_bus.subscribe(
-		type, 
-		callback
-	)
+	event_bus.subscribe(type, callback)
 	_active_subscriptions.append(EventSubscription.new(
 		event_bus,
 		type,

@@ -48,19 +48,19 @@ func _exit_tree() -> void:
 # ===
 
 func _subscribe_events() -> void:
-	EventSystem.subscribe_to_notification(Notifications.Paused, _handle_game_paused, self)
-	EventSystem.subscribe_to_notification(Notifications.Resumed, _handle_game_resumed, self)
-	EventSystem.subscribe_to_command(Commands.StartTitleMusic, _handle_start_title_music, self)
-	EventSystem.subscribe_to_command(Commands.StartWorldMusic, _handle_start_world_music, self)
-	EventSystem.subscribe_to_command(Commands.PlayGameOverMusic, _handle_play_game_over_music, self)
-	EventSystem.subscribe_to_command(Commands.ReplayLastMusic, _handle_replay_last_music, self)
-	EventSystem.subscribe_to_command(Commands.ReplayCurrentMusic, _handle_replay_current_music, self)
-	EventSystem.subscribe_to_command(Commands.SkipCurrentMusic, _handle_skip_current_music, self)
-	EventSystem.subscribe_to_command(Commands.ToggleMusicPaused, _handle_toggle_paused, self)
-	EventSystem.subscribe_to_command(Commands.ToggleMusicLoop, _handle_toggle_loop, self)
-	EventSystem.subscribe_to_command(Commands.ToggleMusicShuffle, _handle_toggle_shuffle, self)
-	EventSystem.subscribe_to_command(Commands.PlaySFX, _handle_play_sfx, self)
-	EventSystem.subscribe_to_command(Commands.KillAllSFX, _handle_kill_all_sfx, self)
+	EventSystem.subscribe_to_notification(Notifications.Paused, _handle_game_paused)
+	EventSystem.subscribe_to_notification(Notifications.Resumed, _handle_game_resumed)
+	EventSystem.subscribe_to_command(Commands.StartTitleMusic, _handle_start_title_music)
+	EventSystem.subscribe_to_command(Commands.StartWorldMusic, _handle_start_world_music)
+	EventSystem.subscribe_to_command(Commands.PlayGameOverMusic, _handle_play_game_over_music)
+	EventSystem.subscribe_to_command(Commands.ReplayLastMusic, _handle_replay_last_music)
+	EventSystem.subscribe_to_command(Commands.ReplayCurrentMusic, _handle_replay_current_music)
+	EventSystem.subscribe_to_command(Commands.SkipCurrentMusic, _handle_skip_current_music)
+	EventSystem.subscribe_to_command(Commands.ToggleMusicPaused, _handle_toggle_paused)
+	EventSystem.subscribe_to_command(Commands.ToggleMusicLoop, _handle_toggle_loop)
+	EventSystem.subscribe_to_command(Commands.ToggleMusicShuffle, _handle_toggle_shuffle)
+	EventSystem.subscribe_to_command(Commands.PlaySFX, _handle_play_sfx)
+	EventSystem.subscribe_to_command(Commands.KillAllSFX, _handle_kill_all_sfx)
 
 func _unsubscribe_events() -> void:
 	EventSystem.unsubscribe_all_for_owner(self)

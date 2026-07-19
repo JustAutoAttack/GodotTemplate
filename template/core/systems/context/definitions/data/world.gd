@@ -1,14 +1,6 @@
 class_name WorldContextData
 extends ContextData
 
-# ===
-# Runtime
-# ===
-
-# ===
-# Persistent
-# ===
-
 # --- Time ---
 signal time_updated(value: float)
 var _time: float

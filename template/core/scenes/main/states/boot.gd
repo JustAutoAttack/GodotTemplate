@@ -34,7 +34,7 @@ func exit() -> void:
 	_unsubscribe_events()
 
 func _subscribe_events() -> void:
-	EventSystem.subscribe_to_notification(Notifications.BootsplashLoaded, _handle_bootsplash_loaded, self)
+	EventSystem.subscribe_to_notification(Notifications.BootsplashLoaded, _handle_bootsplash_loaded)
 
 func _unsubscribe_events() -> void:
 	EventSystem.unsubscribe_all_for_owner(self)

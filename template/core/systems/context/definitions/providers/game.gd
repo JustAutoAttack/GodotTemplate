@@ -10,8 +10,9 @@ var context: GameContextData
 func _init(
 	p_context: GameContextData
 ) -> void:
+	super._init()
 	context = p_context
-
+	
 # ===
 # Public
 # ===

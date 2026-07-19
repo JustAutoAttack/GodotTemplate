@@ -12,10 +12,7 @@ static func load_resource(
 	expected_type: Object
 ) -> Resource:
 	if path.is_empty():
-		LogSystem.log_message(
-			"No path defined for type: {0}".format([expected_type]),
-			LogEnums.LogLevel.WARN
-		)
+		_warn_no_path(expected_type)
 		return null
 	
 	var data: Variant = ResourceLoader.load(
@@ -25,10 +22,7 @@ static func load_resource(
 	)
 	
 	if not is_instance_of(data, expected_type):
-		LogSystem.log_message(
-			"Type mismatch at '{0}'. Expected {1}.".format([path, expected_type]),
-			LogEnums.LogLevel.ERROR
-		)
+		_error_type_mismatch(path, expected_type)
 		return null
 		
 	return data
@@ -45,10 +39,7 @@ static func get_path_from_table(
 ) -> String:
 	var path: String = table.get(key, "")
 	if path.is_empty():
-		LogSystem.log_message(
-			"No path defined for type: {0}".format([enum_keys[key]]),
-			LogEnums.LogLevel.WARN
-		)
+		_warn_no_path(enum_keys[key])
 		return ""
 	
 	return path
@@ -80,11 +71,9 @@ static func load_resource_from_table(
 static func load_packed_scene(path: String) -> PackedScene:
 	var packed_scene: PackedScene = ResourceLoader.load(path) as PackedScene
 	if not packed_scene:
-		LogSystem.log_message(
-			"Failed to load scene at: " + path,
-			LogEnums.LogLevel.ERROR
-		)
+		_error_failed_to_load_scene(path)
 		return null
+	
 	return packed_scene
 
 ## Instantiates a scene directly from a file path.
@@ -100,15 +89,13 @@ static func load_scene(
 		path, 
 		PackedScene
 	) as PackedScene
-	if not packed_scene: return null
+	if not packed_scene: 
+		return null
 	
 	var instance: Node = packed_scene.instantiate()
 	
 	if not is_instance_of(instance, expected_base_class):
-		LogSystem.log_message(
-			"Scene at '{0}' does not inherit from expected class.".format([path]),
-			LogEnums.LogLevel.ERROR
-		)
+		_error_invalid_base_class(path)
 		instance.queue_free()
 		return null
 		
@@ -134,3 +121,31 @@ static func load_scene_from_table(
 		return null
 	
 	return load_scene(path, expected_base_class)
+
+# ===
+# Private
+# ===
+
+static func _warn_no_path(type_context: Variant) -> void:
+	LogSystem.log_message(
+		"No path defined for type: {0}".format([type_context]),
+		LogEnums.LogLevel.WARN
+	)
+
+static func _error_type_mismatch(path: String, expected_type: Variant) -> void:
+	LogSystem.log_message(
+		"Type mismatch at '{0}'. Expected {1}.".format([path, expected_type]),
+		LogEnums.LogLevel.ERROR
+	)
+
+static func _error_failed_to_load_scene(path: String) -> void:
+	LogSystem.log_message(
+		"Failed to load scene at: {0}".format([path]),
+		LogEnums.LogLevel.ERROR
+	)
+
+static func _error_invalid_base_class(path: String) -> void:
+	LogSystem.log_message(
+		"Scene at '{0}' does not inherit from expected class.".format([path]),
+		LogEnums.LogLevel.ERROR
+	)

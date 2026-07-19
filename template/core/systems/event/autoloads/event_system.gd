@@ -22,12 +22,12 @@ func broadcast(notification_event: Notification) -> void:
 # --- Subscription ---
 
 ## Registers a handler for a specific command type.
-func subscribe_to_command(type: GDScript, callback: Callable, owning_object: Object) -> void:
-	EventSubscriber.subscribe(command_bus, type, callback, owning_object)
+func subscribe_to_command(type: GDScript, callback: Callable) -> void:
+	EventSubscriber.subscribe(command_bus, type, callback)
 
 ## Registers a listener for a specific notification type.
-func subscribe_to_notification(type: GDScript, callback: Callable, owning_object: Object) -> void:
-	EventSubscriber.subscribe(notification_bus, type, callback, owning_object)
+func subscribe_to_notification(type: GDScript, callback: Callable) -> void:
+	EventSubscriber.subscribe(notification_bus, type, callback)
 
 # --- Lifecycle ---
 

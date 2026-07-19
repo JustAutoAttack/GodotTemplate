@@ -14,6 +14,7 @@ const BusMuteFlag: Dictionary[Enums.AudioBusType, int] = {
 # ===
 
 func _init(p_context: SettingsContextData) -> void:
+	super._init()
 	context = p_context
 
 # ===
@@ -47,23 +48,21 @@ func is_bus_muted(bus: Enums.AudioBusType) -> bool:
 	var mask: int = BusMuteFlag[bus]
 	return (context.muted_buses & mask) != 0
 
-# --- Controls ---
-func set_controller_sensitivity(value: Vector2) -> void:
-	context.controller_sensitivity_x = clampf(value.x, 0.0, 1.0)
-	context.controller_sensitivity_y = clampf(value.y, 0.0, 1.0)
-
-func get_controller_sensitivity() -> Vector2:
-	return Vector2(
-		context.controller_sensitivity_x,
-		context.controller_sensitivity_y
+# --- Sensitivitu ---
+func set_mouse_sensitivity(value: Vector2) -> void:
+	context.mouse_sensitivity = Vector2(
+		clampf(value.x, 0.0, 1.0),
+		clampf(value.y, 0.0, 1.0)
 	)
 
-# --- Toggles ---
-func set_death_particles(value: bool) -> void:
-	context.death_particles = value
+func get_mouse_sensitivity() -> Vector2:
+	return context.mouse_sensitivity
 
-func set_auto_open_upgrade(value: bool) -> void:
-	context.auto_open_upgrade = value
+func set_controller_sensitivity(value: Vector2) -> void:
+	context.controller_sensitivity = Vector2(
+		clampf(value.x, 0.0, 1.0),
+		clampf(value.y, 0.0, 1.0)
+	)
 
-func set_damage_flash(value: bool) -> void:
-	context.damage_flash = value
+func get_controller_sensitivity() -> Vector2:
+	return context.controller_sensitivity

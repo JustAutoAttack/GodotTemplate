@@ -6,8 +6,8 @@ extends SceneController
 # ===
 
 func _subscribe_events() -> void:
-	EventSystem.subscribe_to_command(Commands.LoadBootsplash, _handle_main_load_bootsplash, self)
-	EventSystem.subscribe_to_command(Commands.LoadGame, _handle_main_load_game, self)
+	EventSystem.subscribe_to_command(Commands.LoadBootsplash, _handle_main_load_bootsplash)
+	EventSystem.subscribe_to_command(Commands.LoadGame, _handle_main_load_game)
 
 # ===
 # Events

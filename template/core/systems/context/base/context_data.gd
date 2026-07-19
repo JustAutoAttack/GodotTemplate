@@ -16,11 +16,13 @@ func reset() -> void:
 # ===
 
 func _authorize_write() -> bool:
-	var stack = get_stack()
-	if stack.size() < 3: return false
-
-	var caller_frame = stack[2]
-	var caller = caller_frame.get("object")
+	# skip_count 1 accounts for StackUtils' own frame, landing on the
+	# same target frame the previous direct get_stack()[2] pointed to.
+	var caller_frame: Dictionary = StackUtils.get_caller_frame(1)
+	if caller_frame.is_empty():
+		return false
+	
+	var caller: Object = caller_frame.get("object") as Object
 	
 	# Direct check
 	if (
@@ -28,12 +30,15 @@ func _authorize_write() -> bool:
 		caller == self
 	):
 		return true
-		
-	# Fallback check: If 'caller' is null, check the script resource path
-	var source_path = caller_frame.get("source")
+	
+	# Fallback: caller object is null (e.g. called before full construction,
+	# or from a context that doesn't retain an object ref) — verify against
+	# the registry of scripts that ContextProvider subclasses self-register,
+	# rather than trusting where the file happens to live on disk.
+	var source_path: String = caller_frame.get("source", "") as String
 	if (
-		source_path is String and 
-		source_path.contains("/providers/")
+		not source_path.is_empty() and 
+		ContextProvider.is_authorized_source(source_path)
 	):
 		return true
 	

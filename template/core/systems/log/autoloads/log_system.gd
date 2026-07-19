@@ -4,12 +4,9 @@
 ## and automatic caller identification via stack introspection.
 extends Node
 
-# TODO: Move stack logic to a StackService
-
 # ===
 # Built-In
 # ===
-
 func _enter_tree() -> void:
 	log_message(
 		"Logger Online", 
@@ -25,7 +22,6 @@ func _exit_tree() -> void:
 # ===
 # Public
 # ===
-
 ## Logs a message to the console.
 ## [br][br]
 ## - [param message]: Text content to log.
@@ -49,15 +45,14 @@ func log_message(
 # ===
 # Private
 # ===
-
-## Resolves the tag for the log message via stack introspection.
+## Resolves the tag for the log message via [StackUtils].
 func _resolve_tag() -> String:
-	var stack: Array = get_stack()
+	# Skip 2: _resolve_tag's own frame and log_message's frame,
+	# landing on whatever code actually called log_message.
+	var frames: Array[Dictionary] = StackUtils.get_stack_trace(2)
 	
-	# Start index 2 to skip _resolve_tag and log_message frames
-	for i: int in range(2, stack.size()):
-		var frame: Dictionary = stack[i]
-		var obj: Object = frame.get("object")
+	for frame: Dictionary in frames:
+		var obj: Object = frame.get("object") as Object
 		
 		# Direct: Check for object in frame
 		if is_instance_valid(obj) and obj != self:
@@ -66,10 +61,11 @@ func _resolve_tag() -> String:
 				return tag
 		
 		# Fallback: Extract class name from the file path
-		var source: String = frame.get("source") as String
+		var source: String = frame.get("source", "") as String
 		if not source.is_empty():
 			var filename: String = source.get_file().get_basename()
-			if filename != "log_system" and filename != "event_bus" and filename != "command_bus":
+			var ignored_files: Array[String] = ["log_system", "event_bus", "command_bus"]
+			if not filename in ignored_files:
 				return filename
 			
 	return "Unknown"

@@ -10,6 +10,7 @@ var context: UIContextData
 func _init(
 	p_context: UIContextData
 ) -> void:
+	super._init()
 	context = p_context
 
 # ===
@@ -20,13 +21,14 @@ func toggle_menu(
 	menu_type: Enums.MenuType, 
 	is_visible: bool
 ) -> void:
+	var menus: Array[Enums.MenuType] = context.open_menus.duplicate()
 	if is_visible:
-		if not context.open_menus.has(menu_type):
-			context.open_menus.append(menu_type)
+		if not menus.has(menu_type):
+			menus.append(menu_type)
 	else:
-		context.open_menus.erase(menu_type)
+		menus.erase(menu_type)
 	
-	context.open_menus_updated.emit(menu_type)
+	context.open_menus = menus
 
 func set_open_menus(
 	value: Array[Enums.MenuType]

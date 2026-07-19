@@ -1,10 +1,6 @@
 class_name UIContextData
 extends ContextData
 
-# ===
-# Runtime
-# ===
-
 # --- Screen Resolution ---
 signal screen_resolution_updated(value: Vector2)
 var _screen_resolution: Vector2
@@ -51,10 +47,6 @@ var is_saving: bool:
 	set(value):
 		_is_saving = value
 		saving_updated.emit(value)
-
-# ===
-# Persistent
-# ===
 
 # ===
 # Built-In

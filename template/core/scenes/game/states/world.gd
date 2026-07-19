@@ -90,8 +90,8 @@ func handle_input(event: InputEvent) -> void:
 # ===
 
 func _subscribe_events() -> void:
-	EventSystem.subscribe_to_notification(Notifications.PauseMenuActioned, _handle_ui_pause_menu, self)
-	EventSystem.subscribe_to_notification(Notifications.SettingsMenuActioned, _handle_ui_settings_menu, self)
+	EventSystem.subscribe_to_notification(Notifications.PauseMenuActioned, _handle_ui_pause_menu)
+	EventSystem.subscribe_to_notification(Notifications.SettingsMenuActioned, _handle_ui_settings_menu)
 
 func _unsubscribe_events() -> void:
 	EventSystem.unsubscribe_all_for_owner(self)

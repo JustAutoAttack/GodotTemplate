@@ -29,7 +29,7 @@ func _init() -> void:
 	_setup_version()
 	_setup_context()
 	_setup_providers()
-	EventSystem.subscribe_to_notification(Notifications.BootsplashLoaded, _handle_bootsplash_loaded, self)
+	EventSystem.subscribe_to_notification(Notifications.BootsplashLoaded, _handle_bootsplash_loaded)
 
 # ===
 # Public

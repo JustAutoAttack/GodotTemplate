@@ -27,9 +27,9 @@ func _exit_tree() -> void:
 # ===
 
 func _subscribe_events() -> void:
-	EventSystem.subscribe_to_command(Commands.SaveSettings, _handle_save_settings, self)
-	EventSystem.subscribe_to_command(Commands.SaveGame, _handle_save_game, self)
-	EventSystem.subscribe_to_notification(Notifications.GameSaveLoaded, _handle_game_loaded, self)
+	EventSystem.subscribe_to_command(Commands.SaveSettings, _handle_save_settings)
+	EventSystem.subscribe_to_command(Commands.SaveGame, _handle_save_game)
+	EventSystem.subscribe_to_notification(Notifications.GameSaveLoaded, _handle_game_loaded)
 
 func _unsubscribe_events() -> void:
 	EventSystem.unsubscribe_all_for_owner(self)

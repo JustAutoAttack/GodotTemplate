@@ -35,7 +35,7 @@ class LoadBootsplash extends Command:
 		super("LoadBootsplash")
 class LoadGame extends Command:
 	func _init() -> void:
-		super("LoadBootsplash")
+		super("LoadGame")
 
 # --- Game ---
 class LoadTitle extends Command:

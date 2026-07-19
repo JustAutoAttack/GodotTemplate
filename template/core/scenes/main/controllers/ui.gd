@@ -27,12 +27,12 @@ func _exit_tree() -> void:
 # ===
 
 func _subscribe_events() -> void:
-	EventSystem.subscribe_to_command(Commands.HideAllUI, func(_event): _hide_all(), self)
-	EventSystem.subscribe_to_command(Commands.ToggleHUD, _handle_toggle_hud, self)
-	EventSystem.subscribe_to_command(Commands.ToggleMenu, _handle_toggle_menu, self)
-	EventSystem.subscribe_to_command(Commands.HideAllMenus, _handle_hide_all_menus, self)
-	EventSystem.subscribe_to_notification(Notifications.LoadingStarted, _handle_loading_started, self)
-	EventSystem.subscribe_to_notification(Notifications.LoadingStopped, _handle_loading_stopped, self)
+	EventSystem.subscribe_to_command(Commands.HideAllUI, func(_event): _hide_all())
+	EventSystem.subscribe_to_command(Commands.ToggleHUD, _handle_toggle_hud)
+	EventSystem.subscribe_to_command(Commands.ToggleMenu, _handle_toggle_menu)
+	EventSystem.subscribe_to_command(Commands.HideAllMenus, _handle_hide_all_menus)
+	EventSystem.subscribe_to_notification(Notifications.LoadingStarted, _handle_loading_started)
+	EventSystem.subscribe_to_notification(Notifications.LoadingStopped, _handle_loading_stopped)
 
 func _unsubscribe_events() -> void:
 	EventSystem.unsubscribe_all_for_owner(self)

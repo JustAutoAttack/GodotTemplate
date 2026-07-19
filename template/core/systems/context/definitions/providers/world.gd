@@ -10,14 +10,15 @@ var context: WorldContextData
 func _init(
 	p_context: WorldContextData
 ) -> void:
+	super._init()
 	context = p_context
+
+func reset() -> void:
+	context.reset()
 
 # ===
 # Public
 # ===
-
-func reset() -> void:
-	context.reset()
 
 func set_time(value: float) -> void:
 	context.time = value

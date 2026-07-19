@@ -62,8 +62,8 @@ func exit() -> void:
 
 func _subscribe_events() -> void:
 	# Custom
-	EventSystem.subscribe_to_notification(Notifications.TitleLoaded, _handle_scene_loaded, self)
-	EventSystem.subscribe_to_notification(Notifications.WorldLoaded, _handle_scene_loaded, self)
+	EventSystem.subscribe_to_notification(Notifications.TitleLoaded, _handle_scene_loaded)
+	EventSystem.subscribe_to_notification(Notifications.WorldLoaded, _handle_scene_loaded)
 	
 	# Signals
 	object_controller.setup_complete.connect(_on_object_controller_setup_complete)

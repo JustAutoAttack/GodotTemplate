@@ -1,10 +1,6 @@
 class_name SettingsContextData
 extends ContextData
 
-# ===
-# Persistent
-# ===
-
 # --- Audio ---
 signal master_volume_updated(value: float)
 var _master_volume: float

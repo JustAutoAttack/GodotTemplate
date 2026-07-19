@@ -12,6 +12,7 @@ func _init(
 	p_settings: SettingsContextData,
 	p_world: WorldContextData,
 ) -> void:
+	super._init()
 	settings_context = p_settings
 	world_context = p_world
 	ensure_settings_file_exists()
