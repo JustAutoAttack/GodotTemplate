@@ -1,8 +1,13 @@
-## Base transport layer for event-driven communication with re-entrant queuing.
+## Base transport layer for event-driven communication.
+##
+## Provides functionality for registering subscribers and dispatching events. 
+## It supports re-entrant queuing, ensuring that events emitted during the 
+## processing of another event are handled sequentially once the current 
+## emission cycle completes.
 class_name EventBus 
 extends RefCounted
 
-## Mapping of event GDScript types to their list of subscriber Callables.
+## Mapping of event types to their list of subscriber Callables.
 var _subscribers: Dictionary[Script, Array] = {}
 
 ## Queue holding events triggered during an existing emission cycle.
@@ -26,7 +31,6 @@ var _can_emit: bool:
 ## - [param callback]: Function to execute when the event is emitted.
 func subscribe(type: Script, callback: Callable) -> void:
 	if not _subscribers.has(type): 
-		# Explicitly initialize as an empty Typed Array
 		_subscribers[type] = [] as Array[Callable]
 	
 	var subs: Array[Callable] = _subscribers[type] as Array[Callable]
@@ -74,16 +78,19 @@ func emit(event: Event) -> void:
 func _emit_policy(_event: Event) -> void:
 	assert(
 		false, 
-        "Must implement _emit_policy in child bus"
+		"Must implement _emit_policy in child bus"
 	)
 
+## Logs event activity with the [LogSystem].
+## [br][br]
+## - [param status]: Status tracking label.
+## [br][br]
+## - [param event]: Event object to log.
 func _log_event(
 	status: String, 
 	event: Event
 ) -> void:
-	var event_name: String = event.get_event_name()
-	
 	LogSystem.log_message(
-		"{0} event: {1}".format([status, event_name]),
+		"{0} event: {1}".format([status, event.string_name]),
 		LogEnums.LogLevel.DEBUG
 	)

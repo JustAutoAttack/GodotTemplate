@@ -6,8 +6,10 @@ var command_bus: CommandBus = CommandBus.new()
 var notification_bus: NotificationBus = NotificationBus.new()
 
 # ===
-# Dispatching API
+# Public
 # ===
+
+# --- Dispatching ---
 
 ## Dispatches a command to the [CommandBus].
 func dispatch_command(command_event: Command) -> void:
@@ -17,9 +19,7 @@ func dispatch_command(command_event: Command) -> void:
 func broadcast(notification_event: Notification) -> void:
 	notification_bus.emit(notification_event)
 
-# ===
-# Subscription API
-# ===
+# --- Subscription ---
 
 ## Registers a handler for a specific command type.
 func subscribe_to_command(type: GDScript, callback: Callable, owning_object: Object) -> void:
@@ -29,9 +29,7 @@ func subscribe_to_command(type: GDScript, callback: Callable, owning_object: Obj
 func subscribe_to_notification(type: GDScript, callback: Callable, owning_object: Object) -> void:
 	EventSubscriber.subscribe(notification_bus, type, callback, owning_object)
 
-# ===
-# Lifecycle API
-# ===
+# --- Lifecycle ---
 
 ## Removes all command subscriptions associated with the provided [param owning_object].
 func unsubscribe_all_for_owner(owning_object: Object) -> void:

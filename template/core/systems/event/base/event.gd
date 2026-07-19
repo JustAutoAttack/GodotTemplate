@@ -2,6 +2,9 @@
 class_name Event 
 extends RefCounted
 
-## Returns the class name of the event for logging
-func get_event_name() -> String:
-	return get_script().get_global_name()
+var string_name: String
+
+func _init(
+	p_string_name: String
+) -> void:
+	string_name = p_string_name

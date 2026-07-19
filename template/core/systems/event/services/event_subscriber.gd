@@ -1,9 +1,19 @@
-## Managed service to track and clean up node-specific event subscriptions
+## Managed service to track and clean up node-specific event subscriptions.
 class_name EventSubscriber
 extends RefCounted
 
+## List of currently active event subscriptions.
 static var _active_subscriptions: Array[EventSubscription] = []
 
+## Registers a subscription and tracks it for cleanup.
+## [br][br]
+## - [param event_bus]: Bus to subscribe to.
+## [br][br]
+## - [param type]: Event class type.
+## [br][br]
+## - [param callback]: Callback function to execute.
+## [br][br]
+## - [param owner]: Object responsible for this subscription.
 static func subscribe(
 	event_bus: EventBus, 
 	type: GDScript, 
@@ -28,6 +38,9 @@ static func subscribe(
 		owner
 	))
 
+## Removes all subscriptions associated with a specific bus.
+## [br][br]
+## - [param bus]: Bus to clear.
 static func unsubscribe_all(bus: EventBus) -> void:
 	for subscription: EventSubscription in _active_subscriptions:
 		if subscription.bus == bus:
@@ -42,6 +55,9 @@ static func unsubscribe_all(bus: EventBus) -> void:
 			return subscription.bus != bus
 	)
 
+## Removes all subscriptions associated with a specific owner.
+## [br][br]
+## - [param owner]: Object to clear subscriptions for.
 static func unsubscribe_all_for_owner(owner: Object) -> void:
 	var remaining: Array[EventSubscription] = []
 	
@@ -56,5 +72,6 @@ static func unsubscribe_all_for_owner(owner: Object) -> void:
 	
 	_active_subscriptions = remaining
 
+## Returns total count of active subscriptions.
 static func get_active_count() -> int:
 	return _active_subscriptions.size()

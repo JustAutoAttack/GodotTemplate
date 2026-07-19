@@ -9,3 +9,11 @@ res://core/systems/event/definitions/notifications.gd
 res://ui/menus/settings/settings_menu.tscn
 res://ui/menus/main/main_menu.tscn
 res://core/scenes/main/controllers/audio.gd
+res://_dev/codebase_docs_map.md
+res://core/systems/event/base/event_bus.gd
+res://core/systems/event/definitions/event_subscription.gd
+res://core/systems/event/services/command_bus.gd
+res://core/systems/event/services/event_subscriber.gd
+res://core/systems/event/autoloads/event_system.gd
+res://core/systems/event/base/event.gd
+res://core/systems/event/definitions/commands.gd

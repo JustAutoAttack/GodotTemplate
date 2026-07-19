@@ -6,36 +6,68 @@ extends RefCounted
 # ===
 
 # --- Save/Load ---
-class StartLoading extends Command: pass
-class StopLoading extends Command: pass
-class StartSaving extends Command: pass
-class StopSaving extends Command: pass
-class SaveGame extends Command: pass
-class SaveSettings extends Command: pass
+class StartLoading extends Command:
+	func _init() -> void:
+		super("StartLoading")
+class StopLoading extends Command:
+	func _init() -> void:
+		super("StopLoading")
+class StartSaving extends Command:
+	func _init() -> void:
+		super("StartSaving")
+class StopSaving extends Command:
+	func _init() -> void:
+		super("StopSaving")
+class SaveGame extends Command:
+	func _init() -> void:
+		super("SaveGame")
+class SaveSettings extends Command:
+	func _init() -> void:
+		super("SaveSettings")
 
 # ===
 # Scene
 # ===
 
 # --- Main ---
-class LoadBootsplash extends Command: pass
-class LoadGame extends Command: pass
+class LoadBootsplash extends Command:
+	func _init() -> void:
+		super("LoadBootsplash")
+class LoadGame extends Command:
+	func _init() -> void:
+		super("LoadBootsplash")
 
 # --- Game ---
-class LoadTitle extends Command: pass
-class LoadWorld extends Command: pass
+class LoadTitle extends Command:
+	func _init() -> void:
+		super("LoadTitle")
+class LoadWorld extends Command:
+	func _init() -> void:
+		super("LoadWorld")
 
 # ===
 # Audio
 # ===
 
 # --- Music ---
-class StartTitleMusic extends Command: pass
-class StartWorldMusic extends Command: pass
-class PlayGameOverMusic extends Command: pass
-class ReplayLastMusic extends Command: pass
-class ReplayCurrentMusic extends Command: pass
-class SkipCurrentMusic extends Command: pass
+class StartTitleMusic extends Command:
+	func _init() -> void:
+		super("StartTitleMusic")
+class StartWorldMusic extends Command:
+	func _init() -> void:
+		super("StartWorldMusic")
+class PlayGameOverMusic extends Command:
+	func _init() -> void:
+		super("PlayGameOverMusic")
+class ReplayLastMusic extends Command:
+	func _init() -> void:
+		super("ReplayLastMusic")
+class ReplayCurrentMusic extends Command:
+	func _init() -> void:
+		super("ReplayCurrentMusic")
+class SkipCurrentMusic extends Command:
+	func _init() -> void:
+		super("SkipCurrentMusic")
 class ToggleMusicPaused extends Command: 
 	
 	var is_paused: bool
@@ -43,6 +75,7 @@ class ToggleMusicPaused extends Command:
 	func _init(
 		p_is_paused: bool
 	) -> void:
+		super("ToggleMusicPaused")
 		is_paused = p_is_paused
 class ToggleMusicLoop extends Command:
 	
@@ -51,6 +84,7 @@ class ToggleMusicLoop extends Command:
 	func _init(
 		p_enabled: bool
 	) -> void:
+		super("ToggleMusicLoop")
 		enabled = p_enabled
 class ToggleMusicShuffle extends Command:
 	
@@ -59,6 +93,7 @@ class ToggleMusicShuffle extends Command:
 	func _init(
 		p_enabled: bool
 	) -> void:
+		super("ToggleMusicShuffle")
 		enabled = p_enabled
 
 # --- SFX ---
@@ -69,14 +104,21 @@ class PlaySFX extends Command:
 	func _init(
 		p_sfx_type: Enums.SFXType
 	) -> void:
+		super("PlaySFX")
 		sfx_type = p_sfx_type
-class KillAllSFX extends Command: pass
+class KillAllSFX extends Command:
+	func _init() -> void:
+		super("KillAllSFX")
 
 # ===
 # UI
 # ===
-class HideAllUI extends Command: pass
-class HideAllMenus extends Command: pass
+class HideAllUI extends Command:
+	func _init() -> void:
+		super("HideAllUI")
+class HideAllMenus extends Command:
+	func _init() -> void:
+		super("HideAllMenus")
 class ToggleMenu extends Command:
 	
 	var type: Enums.MenuType
@@ -86,9 +128,9 @@ class ToggleMenu extends Command:
 		p_type: Enums.MenuType, 
 		p_is_visible: bool
 	):
+		super("ToggleMenu")
 		type = p_type
 		is_visible = p_is_visible
-
 class ToggleHUD extends Command:
 	
 	var is_visible: bool
@@ -96,4 +138,5 @@ class ToggleHUD extends Command:
 	func _init(
 		p_is_visible: bool
 	):
+		super("ToggleHUD")
 		is_visible = p_is_visible

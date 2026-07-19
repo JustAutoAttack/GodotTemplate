@@ -6,15 +6,29 @@ extends RefCounted
 # ===
 
 # --- Pause ---
-class Paused extends Notification: pass
-class Resumed extends Notification: pass
+class Paused extends Notification:
+	func _init() -> void:
+		super("Paused")
+class Resumed extends Notification:
+	func _init() -> void:
+		super("Resumed")
 
 # --- Save/Load ---
-class LoadingStarted extends Notification: pass
-class LoadingStopped extends Notification: pass
-class SavingStarted extends Notification: pass
-class SavingStopped extends Notification: pass
-class GameSaved extends Notification: pass
+class LoadingStarted extends Notification:
+	func _init() -> void:
+		super("LoadingStarted")
+class LoadingStopped extends Notification:
+	func _init() -> void:
+		super("LoadingStopped")
+class SavingStarted extends Notification:
+	func _init() -> void:
+		super("SavingStarted")
+class SavingStopped extends Notification:
+	func _init() -> void:
+		super("SavingStopped")
+class GameSaved extends Notification:
+	func _init() -> void:
+		super("GameSaved")
 class GameSaveLoaded extends Notification: 
 	
 	var data: GameSaveData
@@ -22,21 +36,34 @@ class GameSaveLoaded extends Notification:
 	func _init(
 		p_data: GameSaveData
 	) -> void:
+		super("GameSaveLoaded")
 		data = p_data
-class SettingsSaved extends Notification: pass
+class SettingsSaved extends Notification:
+	func _init() -> void:
+		super("SettingsSaved")
 
 # ===
 # Scene
 # ===
 
 # --- Main ---
-class MainLoaded extends Notification: pass
-class BootsplashLoaded extends Notification: pass
-class GameLoaded extends Notification: pass
+class MainLoaded extends Notification:
+	func _init() -> void:
+		super("MainLoaded")
+class BootsplashLoaded extends Notification:
+	func _init() -> void:
+		super("BootsplashLoaded")
+class GameLoaded extends Notification:
+	func _init() -> void:
+		super("GameLoaded")
 
 # --- Game ---
-class TitleLoaded extends Notification: pass
-class WorldLoaded extends Notification: pass
+class TitleLoaded extends Notification:
+	func _init() -> void:
+		super("TitleLoaded")
+class WorldLoaded extends Notification:
+	func _init() -> void:
+		super("WorldLoaded")
 
 # ===
 # Audio
@@ -50,6 +77,7 @@ class MusicPauseUpdated extends Notification:
 	func _init(
 		p_is_paused: bool
 	) -> void:
+		super("MusicPauseUpdated")
 		is_paused = p_is_paused
 class CurrentPlaybackTimeUpdated extends Notification:
 	
@@ -58,6 +86,7 @@ class CurrentPlaybackTimeUpdated extends Notification:
 	func _init(
 		p_value: int
 	) -> void:
+		super("CurrentPlaybackTimeUpdated")
 		value = p_value
 class CurrentMusicUpdated extends Notification:
 	
@@ -66,6 +95,7 @@ class CurrentMusicUpdated extends Notification:
 	func _init(
 		p_song_data: SongData
 	) -> void:
+		super("CurrentMusicUpdated")
 		song_data = p_song_data
 
 # ===
@@ -79,6 +109,7 @@ class MainMenuActioned extends Notification:
 	func _init(
 		p_action: Enums.MainMenuAction
 	) -> void:
+		super("MainMenuActioned")
 		action = p_action
 class SettingsMenuActioned extends Notification:
 	
@@ -87,6 +118,7 @@ class SettingsMenuActioned extends Notification:
 	func _init(
 		p_action: Enums.SettingsMenuAction
 	) -> void:
+		super("SettingsMenuActioned")
 		action = p_action
 class PauseMenuActioned extends Notification:
 	
@@ -95,4 +127,5 @@ class PauseMenuActioned extends Notification:
 	func _init(
 		p_action: Enums.PauseMenuAction
 	) -> void:
+		super("PauseMenuActioned")
 		action = p_action
